@@ -1,8 +1,8 @@
 import java.util.Random;
 
-public class Edits {
+public class Demon {
     public static void main(String[] args) {
-        int[] array = new int[10];
+        int[] array = new int[5];
         for (int i = 0; i < array.length; i++) {
             array[i] = i;
         }
@@ -50,7 +50,7 @@ public class Edits {
         System.out.println("The pivot position is: " + pos);
         System.out.println("The pivot chosen is: " + array[pos]);
 
-        int[] storage = array.clone();
+        int[] storage = array;
 
         System.out.print("Storage array is: ");
         for (int i = 0; i < storage.length; i++) {
@@ -64,7 +64,7 @@ public class Edits {
         for (int i = start; i <= end; i++) {
             if (!(i == pos)) {
                 if (storage[i] < storage[pos]) {
-                    array[smallAdditions + start] = storage[i];
+                    array[smallAdditions] = storage[i];
                     smallAdditions++;
                 } else {
                     array[end - bigAdditions] = storage[i];
@@ -73,13 +73,13 @@ public class Edits {
             }
         } 
         
-        System.out.print("Array array is: ");
-        for (int i = 0; i < array.length; i++) {
-            System.out.print(array[i] + ", ");
+        System.out.print("Storage array is: ");
+        for (int i = 0; i < storage.length; i++) {
+            System.out.print(storage[i] + ", ");
         }
         System.out.println("");
         
-        array[smallAdditions + start] = storage[pos];
+        array[smallAdditions] = storage[pos];
 
         System.out.print("Array array is: ");
         for (int i = 0; i < array.length; i++) {
@@ -90,11 +90,11 @@ public class Edits {
         System.out.println("sA = " + smallAdditions);
         System.out.println("lA = " + bigAdditions);
 
-        if (smallAdditions > 1 && start < smallAdditions + start) {
-            array = quickSort(array, start, smallAdditions + start - 1);
+        if (smallAdditions > 1) {
+            array = quickSort(array, 0, smallAdditions);
         } 
 
-        if (bigAdditions > 1 && smallAdditions + 1 + start < end) {
+        if (bigAdditions > 1) {
             array = quickSort(array, smallAdditions + 1, end);
         }
 

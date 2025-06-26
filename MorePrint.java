@@ -54,8 +54,6 @@ public class MorePrint {
         int smallAdditions = 0;
         int bigAdditions = 0;
 
-        storage[smallAdditions] = array[pos];
-        
         for (int i = start; i < end; i++) {
             if (!(i == pos)) {
                 if (array[i] < array[pos]) {
@@ -67,6 +65,8 @@ public class MorePrint {
                 }
             }
         } 
+        
+        storage[smallAdditions] = array[pos];
 
         System.out.print("Storage array is: ");
         for (int i = 0; i < storage.length; i++) {

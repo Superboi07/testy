@@ -1,8 +1,8 @@
 import java.util.Random;
 
-public class Edits {
+public class Mircle {
     public static void main(String[] args) {
-        int[] array = new int[10];
+        int[] array = new int[7];
         for (int i = 0; i < array.length; i++) {
             array[i] = i;
         }
@@ -90,11 +90,11 @@ public class Edits {
         System.out.println("sA = " + smallAdditions);
         System.out.println("lA = " + bigAdditions);
 
-        if (smallAdditions > 1 && start < smallAdditions + start) {
-            array = quickSort(array, start, smallAdditions + start - 1);
+        if (smallAdditions > 1) {
+            array = quickSort(array, 0, smallAdditions);
         } 
 
-        if (bigAdditions > 1 && smallAdditions + 1 + start < end) {
+        if (bigAdditions > 1) {
             array = quickSort(array, smallAdditions + 1, end);
         }
 
