@@ -8,7 +8,52 @@ import java.util.Scanner;
  * @version 3.0 (29 March, 2022)
  */
 public class Lab01Runner
+{public static int indexOfKeyword( String s, String keyword )
 {
+  // Change both s and keyword to lower case
+  s = s.toLowerCase();
+  keyword = keyword.toLowerCase();
+
+  // The index of the first occurrence (perhaps embedded) of
+  // keyword in s
+  int startIdx = s.indexOf( keyword );
+
+  // Check if this occurrence is embedded and look further
+  // down s if it is
+  while ( startIdx >= 0 )
+  {
+    // Find the substrings of length 1 immediately before
+    // and after this occurrence. Default to the string " "
+    // containing only a space.
+    String before = " ", after = " ";
+
+    if ( startIdx > 0 )
+    {
+      before = s.substring( startIdx - 1, startIdx );
+    }
+
+    int endIdx = startIdx + keyword.length();
+
+    if ( endIdx < s.length() )
+    {
+      after = s.substring( endIdx, endIdx + 1 );
+    }
+
+    // If before and after aren't letters, this is the
+    // first whole word occurrence
+    if ( (before.compareTo("a") < 0 || before.compareTo("z") > 0)
+          && (after.compareTo("a") < 0 || after.compareTo("z") > 0) )
+    {
+      return startIdx;
+    }
+
+    // This is not a whole word occurrence. Move to
+    // the next occurrence.
+    startIdx = s.indexOf( keyword, startIdx + 1 );
+  }
+
+  return -1;
+}
     /**
      * Determines if any element of an array of Strings is a substring of a given String
      * 
@@ -19,7 +64,7 @@ public class Lab01Runner
     public static boolean containsAnyOf( String s, String[] sArr )
     {
         for ( String t : sArr )
-            if ( s.indexOf( t ) >= 0 )
+            if ( indexOfKeyword( s, t ) >= 0 )
                 return true;
         return false;
     }
@@ -51,7 +96,7 @@ public class Lab01Runner
      */
     public static String getResponse( String statement )
     {
-        String [] negatives = { "no", "never" };
+        String [] negatives = { "no", "never", "not" };
         String[] family =
         {
             "mother", "mom", "father", "dad", "brother",
@@ -63,7 +108,9 @@ public class Lab01Runner
             "gerbil", "rabbit", "fish"
         };
         
-        if ( containsAnyOf( statement, negatives ) )
+        if ( statement.trim().length() == 0 )
+            return "Please say something.";
+        else if ( containsAnyOf( statement, negatives ) )
             return "Why so negative?";
         else if ( containsAnyOf( statement, family ) )
             return "Tell me more about your family.";
@@ -79,12 +126,12 @@ public class Lab01Runner
      * @param args the command line arguments
      */
     public static void main( String[] args )
-    {
+    {String[] farewells = { "bye", "quit", "exit", "done" };
         System.out.println( "Chatter: Hello. Let's talk." );
         Scanner in = new Scanner( System.in );
         String statement = in.nextLine();
         
-        while ( !statement.equals( "Bye" ) )
+        while ( !containsAnyOf( statement, farewells ))
         {
             System.out.println( "Chatter: " + getResponse( statement ) );
             statement = in.nextLine();
