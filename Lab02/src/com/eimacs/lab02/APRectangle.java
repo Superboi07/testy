@@ -1,5 +1,7 @@
 package com.eimacs.lab02;
 
+import java.awt.Graphics;
+
 /**
 *
 * @author |your name|

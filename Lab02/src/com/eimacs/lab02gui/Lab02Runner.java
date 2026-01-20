@@ -19,13 +19,13 @@ public class Lab02Runner
      */
     public static void main( String[] args )
     {
-        APRectangle r = new APRectangle( new APPoint( 37.5, 17.3 ), 12.6, 42.2 );
-        System.out.println( printAPRectangle( r ) );
-        System.out.println( "top right: " + printAPPoint( r.getTopRight() ) );
-        System.out.println( "bottom left: " + printAPPoint( r.getBottomLeft() ) );
-        System.out.println( "bottom right: " + printAPPoint( r.getBottomRight() ) );
-        r.shrink( 60 );
-        System.out.println( "shrunk to 60%: " + printAPRectangle( r ) );
+      JFrame frame = new JFrame( "AP Lab 02" );
+      frame.getContentPane().add( new APCanvas() );
+      frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+      frame.pack();
+      frame.setSize( 480, 504 );
+      frame.setLocation( 100, 100 );
+      frame.setVisible( true );
     }
 
     public static String printAPPoint(APPoint p){ return "(" + p.getX() + "," + p.getY() + ")"; }
