@@ -6,7 +6,7 @@ public class Mircle {
         for (int i = 0; i < array.length; i++) {
             array[i] = i;
         }
-        
+
         System.out.print("Orginal list is: ");
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + ", ");
@@ -60,7 +60,7 @@ public class Mircle {
 
         int smallAdditions = 0;
         int bigAdditions = 0;
-        
+
         for (int i = start; i <= end; i++) {
             if (!(i == pos)) {
                 if (storage[i] < storage[pos]) {
@@ -71,14 +71,14 @@ public class Mircle {
                     bigAdditions++;
                 }
             }
-        } 
-        
+        }
+
         System.out.print("Array array is: ");
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + ", ");
         }
         System.out.println("");
-        
+
         array[smallAdditions + start] = storage[pos];
 
         System.out.print("Array array is: ");
@@ -86,13 +86,13 @@ public class Mircle {
             System.out.print(array[i] + ", ");
         }
         System.out.println("");
-        
+
         System.out.println("sA = " + smallAdditions);
         System.out.println("lA = " + bigAdditions);
 
         if (smallAdditions > 1) {
             array = quickSort(array, 0, smallAdditions);
-        } 
+        }
 
         if (bigAdditions > 1) {
             array = quickSort(array, smallAdditions + 1, end);
